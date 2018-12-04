@@ -1,7 +1,13 @@
 'use strict'
+// https://adventofcode.com/2018/day/2 
 const fs = require('fs');
 
-const filePath = process.argv[2];
+/*
+ *  The path to the input file should be passed by argument, as the first argument,
+ *  which is accessible at the index 2 of process.argv array
+ */
+const filePathIndex = 2;
+const filePath = process.argv[filePathIndex];
 
 const lineReader = require('readline').createInterface({
     input: fs.createReadStream(filePath),
@@ -21,6 +27,7 @@ lineReader.on('line', function (line) {
             objectCountCharacters[character] = 1;
         }
     });
+
     let shouldCountDouble = false;
     let shouldCountTriple = false;
     for(let index in objectCountCharacters) {
@@ -47,7 +54,8 @@ lineReader.on('close', function () {
     console.log('Doubles: ' + countOfDoubles + ', Triples: ' + countOfTriples);
     console.log('Checksum: ' + countOfDoubles * countOfTriples);
     let commonLetters = '';
-    // I'm not pride of the following lines yet, hehe
+    
+    // I'm not proud of the following lines yet, hehe
     arrayOfStrings.forEach(stringId => {
         arrayOfStrings.forEach(stringIdToCompare => {
             if (stringId !== stringIdToCompare){
